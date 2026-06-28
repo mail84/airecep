@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lead Digital - AI Receptionist</title>
+  <meta name="description" content="Lead Digital's AI receptionist answers calls, books appointments, and captures HVAC leads 24/7.">
+  <link rel="preload" as="image" href="ai-receptionist-hero.webp" fetchpriority="high">
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #020617;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --soft: #f8fafc;
+      --primary: #facc15;
+      --primary-dark: #eab308;
+      --amber: #facc15;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: #ffffff;
+      position: relative;
+      z-index: 3;
+    }
+
+    .header-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 22px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 760px;
+      padding: 64px 18px 64px;
+      background:
+        linear-gradient(180deg, rgba(2, 6, 23, 0.62), rgba(2, 6, 23, 0.88)),
+        url("ai-receptionist-hero.webp") center / cover;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .review-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 34px;
+      min-width: 232px;
+      padding: 8px 26px;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(18px) saturate(150%);
+      text-decoration: none;
+      position: relative;
+    }
+
+    .review-badge::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      z-index: 0;
+      border-radius: 999px;
+      background: linear-gradient(115deg, rgba(255, 255, 255, 0.3), transparent 28%, transparent 70%, rgba(255, 255, 255, 0.22));
+      pointer-events: none;
+    }
+
+    .review-badge > span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge-stars {
+      display: inline-flex;
+      gap: 1px;
+      color: var(--primary);
+      line-height: 1;
+      font-size: 17px;
+      letter-spacing: 1px;
+    }
+
+    .review-rating,
+    .review-count {
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .headline-wrap {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: clamp(40px, 7.2vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -0.024em;
+      word-spacing: 0.01em;
+      font-weight: 760;
+      color: #ffffff;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.38);
+    }
+
+    .headline-main,
+    .hero-highlight {
+      display: block;
+    }
+
+    .headline-main {
+      font-size: 1.1em;
+      line-height: 0.94;
+      letter-spacing: -0.018em;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .hero-highlight {
+      color: #facc15;
+      font-style: italic;
+      font-size: 0.88em;
+      line-height: 1.04;
+      letter-spacing: -0.012em;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-subhead {
+      max-width: 590px;
+      margin: 30px auto 0;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 18px;
+      line-height: 1.68;
+      font-weight: 540;
+    }
+
+    .subhead-comma {
+      font-weight: 850;
+      font-size: 1.08em;
+      color: #ffffff;
+    }
+
+    .nowrap {
+      white-space: nowrap;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin-top: 30px;
+      margin-bottom: 8px;
+    }
+
+    .reviewer img {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .reviewer-copy {
+      text-align: left;
+    }
+
+    .reviewer-name {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .reviewer-title {
+      margin-top: 3px;
+      color: #516986;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .offer-line {
+      max-width: 370px;
+      margin: 18px auto 0;
+      padding: 0 18px;
+      color: #38506d;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    .offer-line strong {
+      color: var(--foreground);
+      font-weight: 750;
+    }
+
+    .cta-row {
+      margin-top: 42px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-width: 246px;
+      padding: 16px 28px;
+      border: 0;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #0f172a;
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+      transition: transform 160ms ease, background 160ms ease;
+      cursor: pointer;
+    }
+
+    .cta:hover {
+      background: #f8fafc;
+      transform: translateY(-1px);
+    }
+
+    .cta svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .platforms {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      margin-top: 26px;
+      font-size: 15px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .platform {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .google span:nth-child(1) { color: #4285f4; }
+    .google span:nth-child(2) { color: #ea4335; }
+    .google span:nth-child(3) { color: #fbbc05; }
+    .google span:nth-child(4) { color: #4285f4; }
+    .google span:nth-child(5) { color: #34a853; }
+    .google span:nth-child(6) { color: #ea4335; }
+
+    .small-stars {
+      color: var(--amber);
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .divider {
+      color: #cbd5e1;
+    }
+
+    .facebook-dot {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: #1877f2;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .guarantee {
+      margin-top: 28px;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .guarantee-title {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      font-weight: 720;
+      font-style: italic;
+    }
+
+    .guarantee-title svg {
+      width: 28px;
+      height: 28px;
+      color: #facc15;
+      flex: none;
+    }
+
+
+    .demo {
+      content-visibility: auto;
+      contain-intrinsic-size: 900px;
+      border-top: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.82);
+      padding: 64px 20px;
+    }
+
+    .demo-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .demo h2 {
+      margin: 0 auto;
+      max-width: 680px;
+      text-align: center;
+      font-size: clamp(28px, 5.4vw, 42px);
+      line-height: 1.24;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+    }
+
+    .reviews h2 {
+      margin: 0;
+      text-align: center;
+      font-size: clamp(31px, 6vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+    }
+
+    .heading-play-icon {
+      width: 32px;
+      height: 32px;
+      margin: 0 3px -7px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: #020617;
+      color: #ffffff;
+      vertical-align: baseline;
+    }
+
+    .heading-play-icon::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 10px solid currentColor;
+    }
+
+    .mobile-demo-break {
+      display: inline;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 46px;
+    }
+
+    .demo-card,
+    .review-card {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .demo-card {
+      padding: 30px;
+    }
+
+    .demo-card h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .demo-card ul {
+      display: grid;
+      gap: 16px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .demo-card li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--foreground);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      margin-top: 2px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      background: #f1f5f9;
+      color: #020617;
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+
+
+    .voice-player {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: 24px;
+      padding: 10px 13px;
+      border: 1px solid #dbe4f0;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .voice-play {
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 999px;
+      background: #020617;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: none;
+      cursor: pointer;
+      transition: transform 150ms ease, background 150ms ease;
+    }
+
+    .voice-play:hover {
+      background: #111827;
+      transform: scale(1.03);
+    }
+
+    .play-icon {
+      width: 0;
+      height: 0;
+      margin-left: 3px;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-left: 11px solid currentColor;
+    }
+
+    .pause-icon {
+      display: none;
+      width: 12px;
+      height: 14px;
+      border-left: 4px solid currentColor;
+      border-right: 4px solid currentColor;
+    }
+
+    .voice-player.playing .play-icon {
+      display: none;
+    }
+
+    .voice-player.playing .pause-icon {
+      display: block;
+    }
+
+    .voice-wave {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      height: 34px;
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .voice-wave span {
+      width: 2px;
+      min-width: 2px;
+      border-radius: 999px;
+      background: #020617;
+      opacity: 0.28;
+      transition: opacity 100ms linear, transform 100ms linear;
+    }
+
+    .voice-wave span.active {
+      opacity: 1;
+      transform: scaleY(1.08);
+    }
+
+    .voice-time {
+      min-width: 34px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .demo-audio {
+      display: none;
+    }
+
+    .reviews {
+      border-top: 1px solid var(--border);
+      background: rgba(248, 250, 252, 0.82);
+      padding: 48px 20px 70px;
+    }
+
+    .reviews-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .rating-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      margin-top: 24px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .rating-summary .large-stars {
+      color: #facc15;
+      font-size: 28px;
+      letter-spacing: 2px;
+    }
+
+    .review-list {
+      display: grid;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .review-card {
+      padding: 24px;
+    }
+
+    .review-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .review-name {
+      font-weight: 800;
+    }
+
+    .review-company {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .review-card p {
+      margin: 14px 0 0;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #172033;
+    }
+
+
+
+    .pagination {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 34px;
+    }
+
+    .page-btn {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 13px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: #ffffff;
+      color: var(--foreground);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 150ms ease, color 150ms ease, border-color 150ms ease, opacity 150ms ease;
+    }
+
+    .page-btn:hover:not(:disabled) {
+      background: #f1f5f9;
+    }
+
+    .page-btn.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #111827;
+    }
+
+    .page-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+    }
+
+    .leave-review {
+      margin-top: 44px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+    }
+
+    .leave-review h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+
+    .leave-review .form-subtitle {
+      margin: 8px 0 0;
+      color: #516986;
+      font-size: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .field label,
+    .rating-label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #ffffff;
+      color: var(--foreground);
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .field input {
+      height: 46px;
+      padding: 0 14px;
+    }
+
+    .field textarea {
+      min-height: 108px;
+      padding: 14px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.22);
+    }
+
+    .rating-picker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 46px;
+    }
+
+    .star-btn {
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .star-btn.inactive {
+      color: #d7dee8;
+    }
+
+    .review-text-field {
+      margin-top: 18px;
+    }
+
+    .count-row {
+      margin-top: 7px;
+      color: #516986;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .submit-review-btn {
+      border: 0;
+      border-radius: 16px;
+      background: var(--primary);
+      color: #111827;
+      padding: 14px 23px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .submit-review-btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .submit-message {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 20px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 15px;
+    }
+
+    @media (max-width: 780px) {
+      .header-inner {
+        padding: 14px 23px;
+      }
+
+      .hero {
+        min-height: 760px;
+        padding-top: 58px;
+        padding-bottom: 58px;
+      }
+
+      .headline-wrap {
+        max-width: 430px;
+      }
+
+      .demo-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        padding-left: 18px;
+        padding-right: 18px;
+        min-height: 740px;
+      }
+
+      h1 {
+        font-size: 38px;
+        line-height: 1.08;
+        font-weight: 760;
+      }
+
+      .headline-main {
+        font-size: 1.08em;
+      }
+
+      .hero-highlight {
+        font-size: 0.9em;
+      }
+
+      .hero-subhead {
+        max-width: 345px;
+        margin-top: 26px;
+        font-size: 15.5px;
+        line-height: 1.62;
+      }
+
+      .reviewer img {
+        width: 44px;
+        height: 44px;
+      }
+
+      .reviewer-name {
+        font-size: 15px;
+      }
+
+      .reviewer-title {
+        font-size: 12px;
+      }
+
+      .offer-line {
+        max-width: 360px;
+        padding: 0 16px;
+        font-size: 14px;
+        margin-top: 16px;
+      }
+
+      .guarantee-title {
+        font-size: 23px;
+        letter-spacing: -0.02em;
+      }
+
+      .demo h2 {
+        max-width: 350px;
+        font-size: 28px;
+        line-height: 1.26;
+      }
+
+      .mobile-demo-break {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">Lead Digital</div>
+    </div>
+  </header>
+
+  <main>
+        <section class="hero">
+      <div class="hero-inner">
+        <a class="review-badge" href="#reviews" aria-label="See reviews">
+          <span class="review-rating">4.9</span>
+          <span class="badge-stars" aria-hidden="true">
+            ★★★★★
+          </span>
+          <span class="review-count">(121)</span>
+        </a>
+
+        <div class="headline-wrap">
+          <h1><span class="headline-main">AI Receptionist</span><span class="hero-highlight">Made For HVAC Businesses</span></h1>
+        </div>
+
+        <p class="hero-subhead">Whether you&apos;re on the job site<span class="subhead-comma">,</span> helping a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> Our AI receptionist makes sure you never miss a call and books<br>appointments 24/7</p>
+
+        <div class="cta-row">
+          <a class="cta" href="funnel.html">
+            <span>Book Your Free Demo</span>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="guarantee">
+          <h2 class="guarantee-title">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>30 Day Risk-Free Trial</span>
+          </h2>
+        </div>
+
+        <div class="platforms">
+          <div class="platform">
+            <span class="google" aria-hidden="true"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
+            <span class="small-stars" aria-label="5 star rating">★★★★★</span>
+          </div>
+          <span class="divider" aria-hidden="true">|</span>
+          <div class="platform">
+            <span class="facebook-dot" aria-hidden="true">f</span>
+            <span>Facebook</span>
+            <span class="small-stars" aria-label="5 star rating">★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<section id="demo" class="demo">
+      <div class="demo-inner">
+        <h2>Tap <span class="heading-play-icon" aria-hidden="true"></span> to Hear Live AI Calls</h2>
+        <div class="demo-grid">
+          <article class="demo-card">
+            <h3>Appointment Booking</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Greeted caller professionally</span></li>
+              <li><span class="check">✓</span><span>Found the right time</span></li>
+              <li><span class="check">✓</span><span>Booked the appointment</span></li>
+            </ul>
+            <div class="voice-player" data-audio-player>
+              <button class="voice-play" type="button" aria-label="Play demo audio">
+                <span class="play-icon"></span>
+                <span class="pause-icon"></span>
+              </button>
+              <div class="voice-wave" aria-hidden="true"></div>
+              <span class="voice-time">0:00</span>
+              <audio class="demo-audio" preload="none" data-src="ai-receptionist-booking-call.mp3"></audio>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <h3>After-Hours Call</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Picked up after hours</span></li>
+              <li><span class="check">✓</span><span>Understood the issue</span></li>
+              <li><span class="check">✓</span><span>Scheduled next-day service</span></li>
+            </ul>
+            <div class="voice-player" data-audio-player>
+              <button class="voice-play" type="button" aria-label="Play demo audio">
+                <span class="play-icon"></span>
+                <span class="pause-icon"></span>
+              </button>
+              <div class="voice-wave" aria-hidden="true"></div>
+              <span class="voice-time">0:00</span>
+              <audio class="demo-audio" preload="none" data-src="ai-receptionist-qa-call.mp3"></audio>
+            </div>
+          </article>
+
+          <article class="demo-card">
+            <h3>Transferring to Owner</h3>
+            <ul>
+              <li><span class="check">✓</span><span>Greeted caller professionally</span></li>
+              <li><span class="check">✓</span><span>Confirmed reason for call</span></li>
+              <li><span class="check">✓</span><span>Transferred to owner</span></li>
+            </ul>
+            <div class="voice-player" data-audio-player>
+              <button class="voice-play" type="button" aria-label="Play demo audio">
+                <span class="play-icon"></span>
+                <span class="pause-icon"></span>
+              </button>
+              <div class="voice-wave" aria-hidden="true"></div>
+              <span class="voice-time">0:00</span>
+              <audio class="demo-audio" preload="none" data-src="ai-receptionist-spam-call.mp3"></audio>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+      <div class="reviews-inner">
+        <h2>See What Our Clients Have To Say</h2>
+        <div class="rating-summary">
+          <div class="large-stars" aria-label="5 star rating">★★★★★</div>
+          <div><strong id="average-rating">4.9</strong> average rating from <strong id="review-count">121</strong> reviews</div>
+        </div>
+
+        <div id="review-list" class="review-list"></div>
+        <div id="pagination" class="pagination" aria-label="Review pages"></div>
+
+        <form id="leave-review" class="leave-review">
+          <h3>Leave a Review</h3>
+          <p class="form-subtitle">Share your experience with other HVAC business owners.</p>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="review-name">Name</label>
+              <input id="review-name" name="name" maxlength="80" placeholder="Your name (optional)">
+            </div>
+            <div>
+              <span class="rating-label">Rating</span>
+              <div id="rating-picker" class="rating-picker" aria-label="Choose rating"></div>
+            </div>
+          </div>
+
+          <div class="field review-text-field">
+            <label for="review-text">Your Review</label>
+            <textarea id="review-text" name="review" maxlength="1000" required placeholder="What's your experience been like?"></textarea>
+            <div class="count-row"><span id="review-char-count">0</span>/1000</div>
+          </div>
+
+          <div class="submit-row">
+            <button class="submit-review-btn" type="submit">Submit Review</button>
+            <span id="submit-message" class="submit-message" aria-live="polite"></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Copyright Lead Digital 2024. All Rights Reserved.
+  </footer>
+
+  <script>
+    const seedReviews = [{"name":"Mike R.","company":"R&R Heating & Cooling","rating":5,"size":"big","avatar":true,"review":"This is a literal game changer for me because I am a one-man crew. Handling calls, doing the jobs, and running to Home Depot for parts was a lot to keep up with."},{"name":"Dave T.","company":"ThermalPro HVAC","rating":5,"size":"small","avatar":true,"review":"Booked 20 extra estimates last month. Didn't change anything else, just added their AI receptionist."},{"name":"Carlos M.","company":"M&M Climate Control","rating":5,"size":"big","avatar":true,"review":"I didn't want to hire a receptionist, so this was the perfect middle ground."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"This is a game changer. Thank you so much Taj from Lead Digital."},{"name":"Tony B.","company":"Benson Air Systems","rating":5,"size":"small","avatar":true,"review":"This is so cool. This is a must-need for small HVAC businesses."},{"name":"James K.","company":"K&L Heating Solutions","rating":5,"size":"big","avatar":true,"review":"The thing that got me was the after hours calls. I close at 5. But homeowners don't care what time it is when their heat goes out. I was losing those calls every single night. Now the AI picks them up, books the emergency appointment, and I get a notification. I wake up, I already have a job on the calendar. It's changed how I think about my business."},{"name":"Ray S.","company":"Sunbelt HVAC","rating":4,"size":"small","avatar":true,"review":"Took a little getting used to but once it was set up right it runs smooth. Good product."},{"name":"Jefferson Lopez","company":"Platinum Heating & Cooling","rating":5,"size":"small","avatar":true,"review":"Whether it's 9 PM or a Sunday, I can count on the AI Receptionist to answer and book my appointments. This month alone, it booked me 30 extra estimates."},{"name":"Frank D.","company":"D&D Air Comfort","rating":5,"size":"big","avatar":true,"review":"I've been in HVAC for 22 years and I've seen a lot of gimmicks come and go. This isn't one of them. It actually works. My front desk used to be me and my wife taking turns answering the phone. Now the AI handles it and we focus on the jobs. Revenue is up and we're less stressed. I don't know what else to say."},{"name":"Luis G.","company":"Gulf Coast Air","rating":4,"size":"small","avatar":true,"review":"Customers keep asking who the girl on the phone is. It's the AI lol."},{"name":"Steve H.","company":"H&H Climate Systems","rating":5,"size":"big","avatar":true,"review":"I had a Google Ads campaign running and I knew I was getting calls but I kept missing them on job sites. My cost per lead was high and I was throwing money away every time I missed one. Since adding the AI my cost per booked job dropped significantly because now every call gets answered. The math makes sense."},{"name":"Anonymous","company":"","rating":4,"size":"small","avatar":false,"review":"Works great for after hours. Saved me a few jobs already."},{"name":"Pete W.","company":"Westside Heating & Air","rating":4,"size":"small","avatar":true,"review":"I was on a roof when a $7k job called. The AI got it. That paid for a year of this service."},{"name":"Marco A.","company":"Alpine Air Solutions","rating":5,"size":"big","avatar":true,"review":"Running a small HVAC business means you wear every hat. Owner, technician, salesman, receptionist. Adding this AI basically hired me a front desk person without the headache. It answers every call professionally, qualifies the lead, and books the job. I focus on the work. The AI handles everything else on the front end."},{"name":"Dan F.","company":"First Choice HVAC","rating":5,"size":"small","avatar":true,"review":"Three missed calls turned into booked jobs on the first day. No joke."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"It sounds so real my customers don't even know. That's the point I guess."},{"name":"Rich C.","company":"Comfort Zone Heating","rating":5,"size":"big","avatar":true,"review":"I've tried answering services before and they were a disaster. Rude agents, wrong information, customers calling back upset. This AI is consistent every single time. Same professional tone, right information, books correctly. I wish I had this five years ago."},{"name":"Tom N.","company":"NorthStar Air","rating":4,"size":"small","avatar":true,"review":"Does exactly what it says. Picks up, books, done."},{"name":"Eddie V.","company":"Valley HVAC Pro","rating":4,"size":"small","avatar":true,"review":"Competitor was stealing my leads because I wasn't answering. Not anymore."},{"name":"Anonymous","company":"","rating":5,"size":"big","avatar":false,"review":"I run my HVAC business solo. Just me. I physically cannot answer every call when I'm under a unit or on a roof. I was losing jobs constantly and I knew it but didn't know what to do about it. This fixed the problem. Now I just check my calendar at the end of the day and see what got booked while I was working. It's honestly changed my whole operation."},{"name":"Brian O.","company":"O'Brien Heating & Cooling","rating":5,"size":"small","avatar":true,"review":"Setup was easy and it worked immediately. Zero complaints."},{"name":"Sal M.","company":"Metro Air Systems","rating":5,"size":"big","avatar":true,"review":"What sold me was the demo. I heard the AI on a real call and I couldn't tell it wasn't human. That's when I knew it was legit. Four months in and I'm not looking back. My close rate on leads is higher because every lead actually gets captured now instead of going to voicemail."},{"name":"Chris P.","company":"Precision HVAC","rating":5,"size":"small","avatar":true,"review":"Had a furnace emergency call come in at 11pm. AI booked it. I showed up next morning. Easy money."},{"name":"Anonymous","company":"","rating":4,"size":"small","avatar":false,"review":"Good system. Took about a week to really dial in but now it runs itself."},{"name":"Joe R.","company":"Reliable Air Co.","rating":5,"size":"small","avatar":true,"review":"My wife used to answer calls. Now the AI does and she's happy about it."},{"name":"Greg T.","company":"TempRight HVAC","rating":5,"size":"big","avatar":true,"review":"I was paying for leads on HomeAdvisor and missing half of them. That's the most frustrating thing in this business. You pay for the lead, you don't answer, they move on to the next guy. The AI eliminated that problem completely. Now every lead I pay for actually gets a response. My ROI on advertising went up without spending more money."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Booked a $4,500 AC replacement while I was at my kid's baseball game. Worth every penny."},{"name":"Matt L.","company":"Landmark Heating & Air","rating":5,"size":"small","avatar":true,"review":"It handles the call better than I do honestly. More patient for sure."},{"name":"Nick S.","company":"Summit Climate Control","rating":5,"size":"big","avatar":true,"review":"I added this during my busiest season and it was a lifesaver. Summer in Florida means the phone doesn't stop. I can't answer every call when I have three installs going. The AI kept up with every single call, booked what needed to be booked, and filtered out the non-serious ones. Best decision I made all year."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Simple, effective, affordable. Exactly what a small HVAC business needs."},{"name":"Paul K.","company":"K-Tech Air Systems","rating":4,"size":"small","avatar":true,"review":"Works well. Customers seem comfortable talking to it which is what matters."},{"name":"Vince A.","company":"A1 Comfort Solutions","rating":5,"size":"big","avatar":true,"review":"I've recommended this to two other HVAC guys in my area. Both of them are using it now. The technology is real and it works. I don't understand why every small HVAC business isn't running this already. You're literally paying to get leads and then not answering them. This fixes that."},{"name":"Derek M.","company":"MidWest Air Pro","rating":5,"size":"small","avatar":true,"review":"Three furnace replacements booked in one week from calls I would've missed. Done deal."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Didn't think AI could handle HVAC calls. It handles them better than I expected."},{"name":"Kevin H.","company":"HomeFront HVAC","rating":5,"size":"big","avatar":true,"review":"The ROI on this is not even close. I pay a fraction of what a receptionist would cost and it works 24 hours a day, never calls in sick, never has a bad day, and never gives a customer wrong information. I track my leads and I can see exactly how many jobs came from calls the AI answered. It's significant."},{"name":"Rob D.","company":"Diamond Air Services","rating":5,"size":"small","avatar":true,"review":"It even handles the weird calls professionally. Impressed."},{"name":"Anonymous","company":"","rating":4,"size":"small","avatar":false,"review":"Solid product. Does what it promises."},{"name":"Al B.","company":"Bluewave Heating & Air","rating":5,"size":"small","avatar":true,"review":"My no-show rate on estimates dropped because the AI qualifies leads better than I was."},{"name":"Jason C.","company":"ClearAir HVAC","rating":5,"size":"big","avatar":true,"review":"I run a husband and wife operation. Both of us are usually on jobs or handling the kids. The phone was becoming a second job. Now the AI is our front desk and we just do the work. It's taken so much stress off of us. Our customers get a professional response every time and we get to focus on what we're actually good at."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Running it for two months. Already paid for itself three times over."},{"name":"Tim W.","company":"Windward Air Systems","rating":5,"size":"small","avatar":true,"review":"Customers actually comment on how easy it was to book. That's a good sign."},{"name":"Sam F.","company":"Frost-Free HVAC","rating":5,"size":"big","avatar":true,"review":"What I didn't expect was how it would change my mindset about marketing. Before I was hesitant to run more ads because I knew I was missing calls. Now I'm confident that every lead I generate actually gets handled. So I'm spending more on ads and getting better returns. The AI basically unlocked the next level of my business."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Night and day difference from the answering service I used before."},{"name":"Hector R.","company":"Rio Grande Air Co.","rating":5,"size":"small","avatar":true,"review":"Missed a call at 7am while loading my van. AI got it, booked a full system replacement."},{"name":"Bill M.","company":"Mountainview HVAC","rating":4,"size":"big","avatar":true,"review":"I had some questions when I first set it up and the support was helpful. Once it was dialed in it ran perfectly. My main concern was whether customers would be frustrated talking to an AI but honestly most of them don't even know. They just call, get helped, and book. That's all they care about."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Highly recommend to any HVAC owner who is tired of playing phone tag."},{"name":"Gary S.","company":"Signature Air Systems","rating":5,"size":"small","avatar":true,"review":"Paid for six months upfront after the first two weeks. That confident in it."},{"name":"Phil T.","company":"TruTemp HVAC","rating":5,"size":"big","avatar":true,"review":"I've been running a small HVAC business for 11 years. The hardest part has always been managing leads while you're out in the field. This AI solved that problem in a way I didn't think was possible yet. The technology is genuinely impressive and the business impact is real. I track everything and the numbers don't lie."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"It's like having an employee who never needs a day off."},{"name":"Don C.","company":"Coastal Breeze HVAC","rating":5,"size":"small","avatar":true,"review":"Two calls came in during a big install. AI booked both. Didn't miss a beat."},{"name":"Manny R.","company":"Rivera Climate Solutions","rating":5,"size":"big","avatar":true,"review":"Before this I had a part time person answering calls but she wasn't always available. Missed calls on weekends, missed calls during lunch. Customers would call back frustrated. Since switching to the AI I've had zero complaints about not being able to reach us. It answers every single time and handles it right. Way better than the part time solution."},{"name":"Anonymous","company":"","rating":4,"size":"small","avatar":false,"review":"Good investment. Noticed the difference within the first week."},{"name":"Scott B.","company":"Breeze Right HVAC","rating":5,"size":"small","avatar":true,"review":"Booked a $6k AC install while I was at dinner with my family. That's the dream."},{"name":"Len G.","company":"Great Lakes Heating","rating":5,"size":"big","avatar":true,"review":"I used to dread busy season because I knew I'd be drowning in missed calls. This year was completely different. Had the AI running the whole time and not a single lead slipped through. Booked more jobs in June and July than I ever have. The AI handled the overflow without breaking a sweat. I'm already thinking about how to scale because I know the leads will get answered."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Skeptical at first. Now I tell every HVAC guy I know about it."},{"name":"Art P.","company":"PeakAir HVAC","rating":5,"size":"small","avatar":true,"review":"The notification when a job gets booked is my favorite part. Love seeing that come through."},{"name":"Reggie W.","company":"Windchill Systems","rating":5,"size":"big","avatar":true,"review":"I was losing business to bigger companies just because they had staff to answer phones and I didn't. This leveled the playing field. Now my one man shop answers calls like a full operation. Customers can't tell the difference and honestly that's the whole point. You compete on professionalism first, then on the work."},{"name":"Anonymous","company":"","rating":5,"size":"small","avatar":false,"review":"Set it up in an afternoon. Had bookings by that evening."},{"name":"Ken L.","company":"Liberty Air Services","rating":5,"size":"small","avatar":true,"review":"Best thirty dollars a day I spend on my business. Not even close."}];
+    const pageSize = 5;
+    let extraReviews = [];
+    let currentPage = 1;
+    let selectedRating = 5;
+
+    const reviewList = document.getElementById('review-list');
+    const pagination = document.getElementById('pagination');
+    const reviewCount = document.getElementById('review-count');
+    const ratingPicker = document.getElementById('rating-picker');
+    const reviewForm = document.getElementById('leave-review');
+    const reviewName = document.getElementById('review-name');
+    const reviewText = document.getElementById('review-text');
+    const charCount = document.getElementById('review-char-count');
+    const submitMessage = document.getElementById('submit-message');
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function stars(rating) {
+      return '<span class="small-stars" aria-label="' + rating + ' star rating">' + '★★★★★'.slice(0, rating) + '</span>';
+    }
+
+    function allReviews() {
+      return seedReviews.slice(0, 4).concat(extraReviews, seedReviews.slice(4));
+    }
+
+    function renderReviews() {
+      const all = allReviews();
+      const totalPages = Math.max(1, Math.ceil(all.length / pageSize));
+      currentPage = Math.min(currentPage, totalPages);
+      const start = (currentPage - 1) * pageSize;
+      const visible = all.slice(start, start + pageSize);
+
+      reviewCount.textContent = String(121 + extraReviews.length);
+      reviewList.innerHTML = visible.map(function(review) {
+        return '<article class="review-card">' +
+          '<div class="review-top">' +
+            '<div>' +
+              '<div class="review-name">' + escapeHtml(review.name) + '</div>' +
+              (review.company ? '<div class="review-company">' + escapeHtml(review.company) + '</div>' : '') +
+            '</div>' +
+            stars(review.rating) +
+          '</div>' +
+          '<p>' + escapeHtml(review.review) + '</p>' +
+        '</article>';
+      }).join('');
+
+      let buttons = '<button class="page-btn" type="button" ' + (currentPage === 1 ? 'disabled' : '') + ' data-page="prev">Prev</button>';
+      for (let i = 1; i <= totalPages; i += 1) {
+        buttons += '<button class="page-btn ' + (i === currentPage ? 'active' : '') + '" type="button" data-page="' + i + '">' + i + '</button>';
+      }
+      buttons += '<button class="page-btn" type="button" ' + (currentPage === totalPages ? 'disabled' : '') + ' data-page="next">Next</button>';
+      pagination.innerHTML = buttons;
+    }
+
+    function renderRatingPicker() {
+      ratingPicker.innerHTML = [1, 2, 3, 4, 5].map(function(rating) {
+        return '<button class="star-btn ' + (rating <= selectedRating ? '' : 'inactive') + '" type="button" aria-label="' + rating + ' stars" data-rating="' + rating + '">★</button>';
+      }).join('');
+    }
+
+    pagination.addEventListener('click', function(event) {
+      const button = event.target.closest('[data-page]');
+      if (!button || button.disabled) return;
+      const totalPages = Math.max(1, Math.ceil(allReviews().length / pageSize));
+      const target = button.dataset.page;
+      if (target === 'prev') currentPage = Math.max(1, currentPage - 1);
+      else if (target === 'next') currentPage = Math.min(totalPages, currentPage + 1);
+      else currentPage = Number(target);
+      renderReviews();
+      document.getElementById('reviews').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    ratingPicker.addEventListener('click', function(event) {
+      const button = event.target.closest('[data-rating]');
+      if (!button) return;
+      selectedRating = Number(button.dataset.rating);
+      renderRatingPicker();
+    });
+
+    reviewText.addEventListener('input', function() {
+      charCount.textContent = String(reviewText.value.length);
+    });
+
+    reviewForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const text = reviewText.value.trim().slice(0, 1000);
+      if (!text) return;
+      extraReviews.push({
+        name: reviewName.value.trim().slice(0, 80) || 'Anonymous',
+        company: '',
+        rating: selectedRating,
+        size: text.length > 140 ? 'big' : 'small',
+        avatar: false,
+        review: text
+      });
+      reviewName.value = '';
+      reviewText.value = '';
+      charCount.textContent = '0';
+      selectedRating = 5;
+      currentPage = 1;
+      renderRatingPicker();
+      renderReviews();
+      submitMessage.textContent = 'Thanks - your review was posted!';
+      setTimeout(function() { submitMessage.textContent = ''; }, 3000);
+    });
+
+    renderRatingPicker();
+    renderReviews();
+  </script>
+  <script>
+    function initVoicePlayers() {
+      const heights = [10, 18, 24, 14, 28, 32, 16, 22, 30, 12, 26, 34, 18, 28, 14, 32, 22, 12, 30, 24, 16, 34, 20, 28, 12, 30, 18, 24, 34, 16, 26, 12, 30, 22, 18, 32, 14, 28, 24, 16, 34, 20];
+      document.querySelectorAll('[data-audio-player]').forEach(function(player) {
+        const audio = player.querySelector('audio');
+        const button = player.querySelector('.voice-play');
+        const wave = player.querySelector('.voice-wave');
+        const time = player.querySelector('.voice-time');
+
+        wave.innerHTML = heights.map(function(height) {
+          return '<span style="height:' + height + 'px"></span>';
+        }).join('');
+        const bars = Array.from(wave.querySelectorAll('span'));
+
+        function formatTime(seconds) {
+          if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+          const mins = Math.floor(seconds / 60);
+          const secs = Math.floor(seconds % 60).toString().padStart(2, '0');
+          return mins + ':' + secs;
+        }
+
+        function updateProgress() {
+          const duration = audio.duration || 0;
+          const ratio = duration ? audio.currentTime / duration : 0;
+          const activeBars = Math.round(ratio * bars.length);
+          bars.forEach(function(bar, index) {
+            bar.classList.toggle('active', index < activeBars);
+          });
+          time.textContent = formatTime(audio.currentTime);
+        }
+
+        button.addEventListener('click', function() {
+          document.querySelectorAll('[data-audio-player] audio').forEach(function(otherAudio) {
+            if (otherAudio !== audio) otherAudio.pause();
+          });
+          if (!audio.src && audio.dataset.src) audio.src = audio.dataset.src;
+          if (audio.paused) audio.play();
+          else audio.pause();
+        });
+
+        audio.addEventListener('play', function() {
+          document.querySelectorAll('[data-audio-player]').forEach(function(otherPlayer) {
+            if (otherPlayer !== player) otherPlayer.classList.remove('playing');
+          });
+          player.classList.add('playing');
+        });
+        audio.addEventListener('pause', function() { player.classList.remove('playing'); });
+        audio.addEventListener('ended', function() {
+          player.classList.remove('playing');
+          audio.currentTime = 0;
+          updateProgress();
+        });
+        audio.addEventListener('timeupdate', updateProgress);
+        audio.addEventListener('loadedmetadata', updateProgress);
+        updateProgress();
+      });
+    }
+
+    initVoicePlayers();
+  </script>
+
+</body>
+</html>
