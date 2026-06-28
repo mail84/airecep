@@ -154,21 +154,20 @@
     }
 
     .headline-main {
-      font-size: 1.18em;
+      font-size: 1.1em;
       line-height: 0.94;
-      letter-spacing: -0.012em;
-      margin-bottom: 10px;
+      letter-spacing: -0.018em;
+      margin-bottom: 8px;
       text-align: center;
     }
 
     .hero-highlight {
       color: #facc15;
       font-style: italic;
-      font-size: 0.84em;
+      font-size: 0.88em;
       line-height: 1.04;
       letter-spacing: -0.012em;
       text-align: center;
-      white-space: nowrap;
       margin-left: auto;
       margin-right: auto;
     }
@@ -762,6 +761,22 @@
       margin-top: 18px;
     }
 
+    .anonymous-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      color: #334155;
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .anonymous-row input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+
     .count-row {
       margin-top: 7px;
       color: #516986;
@@ -848,7 +863,7 @@
       }
 
       .hero-highlight {
-        font-size: clamp(27px, 7.1vw, 32px);
+        font-size: 0.9em;
       }
 
       .hero-subhead {
@@ -1034,11 +1049,20 @@
               <label for="review-name">Name</label>
               <input id="review-name" name="name" maxlength="80" placeholder="Your name (optional)">
             </div>
+            <div class="field">
+              <label for="review-business">Business Name</label>
+              <input id="review-business" name="business" maxlength="100" placeholder="Business name (optional)">
+            </div>
             <div>
               <span class="rating-label">Rating</span>
               <div id="rating-picker" class="rating-picker" aria-label="Choose rating"></div>
             </div>
           </div>
+
+          <label class="anonymous-row" for="anonymous-review">
+            <input id="anonymous-review" name="anonymous" type="checkbox">
+            <span>Leave this review as anonymous</span>
+          </label>
 
           <div class="field review-text-field">
             <label for="review-text">Your Review</label>
@@ -1072,6 +1096,8 @@
     const ratingPicker = document.getElementById('rating-picker');
     const reviewForm = document.getElementById('leave-review');
     const reviewName = document.getElementById('review-name');
+    const reviewBusiness = document.getElementById('review-business');
+    const anonymousReview = document.getElementById('anonymous-review');
     const reviewText = document.getElementById('review-text');
     const charCount = document.getElementById('review-char-count');
     const submitMessage = document.getElementById('submit-message');
@@ -1151,19 +1177,33 @@
       charCount.textContent = String(reviewText.value.length);
     });
 
+    anonymousReview.addEventListener('change', function() {
+      reviewName.disabled = anonymousReview.checked;
+      reviewBusiness.disabled = anonymousReview.checked;
+      if (anonymousReview.checked) {
+        reviewName.value = '';
+        reviewBusiness.value = '';
+      }
+    });
+
     reviewForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const text = reviewText.value.trim().slice(0, 1000);
       if (!text) return;
+      const isAnonymous = anonymousReview.checked;
       extraReviews.push({
-        name: reviewName.value.trim().slice(0, 80) || 'Anonymous',
-        company: '',
+        name: isAnonymous ? 'Anonymous' : (reviewName.value.trim().slice(0, 80) || 'Anonymous'),
+        company: isAnonymous ? '' : reviewBusiness.value.trim().slice(0, 100),
         rating: selectedRating,
         size: text.length > 140 ? 'big' : 'small',
         avatar: false,
         review: text
       });
       reviewName.value = '';
+      reviewBusiness.value = '';
+      anonymousReview.checked = false;
+      reviewName.disabled = false;
+      reviewBusiness.disabled = false;
       reviewText.value = '';
       charCount.textContent = '0';
       selectedRating = 5;
@@ -1240,3 +1280,5 @@
 
 </body>
 </html>
+
+
