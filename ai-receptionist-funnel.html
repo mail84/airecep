@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Receptionist Demo | Lead Digital</title>
+  <meta name="description" content="Book a free AI receptionist demo with Lead Digital.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #ffffff;
+      --foreground: #020617;
+      --muted: #516986;
+      --soft: #f3f6fb;
+      --primary: #2f63ee;
+      --primary-dark: #184be8;
+      --border: #dbe4f0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(100%, 460px);
+      min-height: 100vh;
+      margin: 0 auto;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      padding: 156px 52px 44px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      border: 0;
+      background: transparent;
+      color: #496789;
+      cursor: pointer;
+      font: inherit;
+      font-size: 16px;
+      font-weight: 650;
+      line-height: 1;
+      padding: 0;
+      text-decoration: none;
+    }
+
+    .step {
+      display: none;
+      animation: stepIn 180ms ease both;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes stepIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .intro {
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      color: #020617;
+      font-size: 32px;
+      line-height: 1.14;
+      letter-spacing: -0.025em;
+      font-weight: 700;
+    }
+
+    .trial-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin: 14px auto 0;
+      color: var(--foreground);
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .trial-badge svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary-dark);
+      flex: none;
+    }
+
+    .description {
+      max-width: 330px;
+      margin: 10px auto 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 560;
+      line-height: 1.45;
+    }
+
+    .question-title {
+      margin-bottom: 22px;
+      font-size: 25px;
+      line-height: 1.22;
+      letter-spacing: -0.018em;
+      font-weight: 650;
+    }
+
+    .fields {
+      display: grid;
+      gap: 14px;
+    }
+
+    .input {
+      width: 100%;
+      height: 62px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--soft);
+      color: var(--foreground);
+      font: inherit;
+      font-size: 18px;
+      font-weight: 520;
+      outline: none;
+      padding: 0 18px;
+      transition: background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .input::placeholder {
+      color: #557195;
+      opacity: 1;
+    }
+
+    .input:focus {
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(47, 99, 238, 0.15), 0 0 0 1px var(--primary);
+    }
+
+    .button {
+      width: 100%;
+      min-height: 62px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 16px;
+      background: var(--primary);
+      color: #ffffff;
+      cursor: pointer;
+      font: inherit;
+      font-size: 18px;
+      font-weight: 720;
+      margin-top: 22px;
+      padding: 16px 22px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 7px 14px rgba(24, 75, 232, 0.22);
+      transition: background 160ms ease, transform 160ms ease, opacity 160ms ease;
+    }
+
+    .button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+      transform: none;
+    }
+
+    .legal {
+      max-width: 310px;
+      margin: 14px auto 0;
+      color: #8aa0ba;
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .question-copy {
+      margin: 10px auto 24px;
+      max-width: 330px;
+      color: #607897;
+      font-size: 15px;
+      font-weight: 560;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .choice-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .choice-option {
+      min-height: 62px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      background: var(--soft);
+      color: var(--foreground);
+      cursor: pointer;
+      font: inherit;
+      font-size: 18px;
+      font-weight: 560;
+      padding: 0 18px;
+      text-align: left;
+      transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .choice-option:hover {
+      background: #e6edf6;
+      transform: translateY(-1px);
+    }
+
+    .choice-option.selected {
+      border-color: rgba(47, 99, 238, 0.55);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(47, 99, 238, 0.11);
+    }
+
+    .choice-dot {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #9ab0ca;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: inset 0 0 0 4px #ffffff;
+      flex: none;
+      transition: border-color 160ms ease, background 160ms ease;
+    }
+
+    .choice-option.selected .choice-dot {
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+
+    .website-field {
+      height: 66px;
+      border: 1px solid rgba(47, 99, 238, 0.48);
+      background: #ffffff;
+      box-shadow: 0 12px 28px rgba(24, 75, 232, 0.08), 0 0 0 3px rgba(47, 99, 238, 0.08);
+      margin-bottom: 0;
+    }
+
+    .website-field::placeholder {
+      color: #6d87a8;
+    }
+
+    .website-step .button {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        width: 100%;
+        border: 0;
+        padding: 136px 52px 36px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        padding: 112px 28px 34px;
+      }
+
+      h1,
+      h2 {
+        font-size: 31px;
+      }
+
+      .trial-badge {
+        font-size: 18px;
+      }
+
+      .input,
+      .button,
+      .choice-option {
+        min-height: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <form class="step active" id="step-1">
+      <a class="back" href="index.html">&larr; Back</a>
+      <div class="intro">
+        <h1>AI Receptionist Demo</h1>
+        <div class="trial-badge">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>30 Day Risk-Free Trial</span>
+        </div>
+      </div>
+
+      <div class="fields">
+        <input class="input" id="name" type="text" autocomplete="name" placeholder="Full Name" required>
+        <input class="input" id="phone" type="tel" autocomplete="tel" placeholder="Phone Number" required>
+        <input class="input" id="email" type="email" autocomplete="email" placeholder="Email Address" required>
+      </div>
+      <button class="button" type="submit">Next</button>
+      <p class="legal">By continuing, you agree to Lead Digital's Privacy Policy and Terms of Service.</p>
+    </form>
+
+    <form class="step" id="step-2">
+      <button class="back" type="button" data-back>&larr; Back</button>
+      <div class="intro">
+        <h2 class="question-title">Roughly how many calls do you get every day?</h2>
+        <p class="question-copy">Choose the closest number.</p>
+      </div>
+      <div class="choice-list" id="job-options">
+        <button class="choice-option" type="button" data-jobs="5-10">
+          <span class="choice-dot" aria-hidden="true"></span>
+          <span>5-10</span>
+        </button>
+        <button class="choice-option" type="button" data-jobs="10-20">
+          <span class="choice-dot" aria-hidden="true"></span>
+          <span>10-20</span>
+        </button>
+        <button class="choice-option" type="button" data-jobs="20-30">
+          <span class="choice-dot" aria-hidden="true"></span>
+          <span>20-30</span>
+        </button>
+        <button class="choice-option" type="button" data-jobs="30+">
+          <span class="choice-dot" aria-hidden="true"></span>
+          <span>30+</span>
+        </button>
+      </div>
+    </form>
+
+    <form class="step website-step" id="step-3">
+      <button class="back" type="button" data-back>&larr; Back</button>
+      <div class="intro">
+        <h2 class="question-title">What is your business website?</h2>
+      </div>
+      <input class="input website-field" id="website" type="text" inputmode="url" autocomplete="url" placeholder="www.yourbusiness.com">
+      <button class="button" id="schedule-button" type="submit" disabled>Choose a time</button>
+    </form>
+  </main>
+
+  <script>
+    const state = {
+      step: 1,
+      name: '',
+      phone: '',
+      email: '',
+      selectedCalls: '',
+      website: ''
+    };
+
+    const steps = [
+      document.getElementById('step-1'),
+      document.getElementById('step-2'),
+      document.getElementById('step-3')
+    ];
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const websiteInput = document.getElementById('website');
+    const jobOptions = document.getElementById('job-options');
+    const scheduleButton = document.getElementById('schedule-button');
+
+    function setStep(step) {
+      state.step = step;
+      steps.forEach(function(el, index) {
+        el.classList.toggle('active', index + 1 === step);
+      });
+    }
+
+    function getCalendlyUrl() {
+      const url = new URL('https://calendly.com/leaddigitalorg/aireceptionist');
+      url.searchParams.set('name', state.name);
+      url.searchParams.set('email', state.email);
+      return url.toString();
+    }
+
+    function updateScheduleButton() {
+      scheduleButton.disabled = !websiteInput.value.trim();
+    }
+
+    document.getElementById('step-1').addEventListener('submit', function(event) {
+      event.preventDefault();
+      state.name = nameInput.value.trim();
+      state.phone = phoneInput.value.trim();
+      state.email = emailInput.value.trim();
+      if (!state.name || !state.phone || !state.email) return;
+      setStep(2);
+    });
+
+    jobOptions.addEventListener('click', function(event) {
+      const option = event.target.closest('[data-jobs]');
+      if (!option) return;
+      state.selectedCalls = option.dataset.jobs;
+      jobOptions.querySelectorAll('.choice-option').forEach(function(button) {
+        button.classList.toggle('selected', button === option);
+      });
+      setStep(3);
+    });
+
+    websiteInput.addEventListener('input', function() {
+      updateScheduleButton();
+    });
+
+    document.getElementById('step-2').addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (state.selectedCalls) setStep(3);
+    });
+
+    document.getElementById('step-3').addEventListener('submit', function(event) {
+      event.preventDefault();
+      state.website = websiteInput.value.trim();
+      if (!state.selectedCalls || !state.website) return;
+      window.location.href = getCalendlyUrl();
+    });
+
+    document.querySelectorAll('[data-back]').forEach(function(button) {
+      button.addEventListener('click', function() {
+        setStep(Math.max(1, state.step - 1));
+      });
+    });
+  </script>
+</body>
+</html>
