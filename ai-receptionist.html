@@ -173,12 +173,13 @@
     }
 
     .hero-subhead {
-      max-width: 590px;
+      max-width: 430px;
       margin: 30px auto 0;
       color: rgba(255, 255, 255, 0.82);
-      font-size: 18px;
-      line-height: 1.68;
+      font-size: clamp(16px, 4vw, 18px);
+      line-height: 1.55;
       font-weight: 540;
+      text-wrap: balance;
     }
 
     .subhead-comma {
@@ -849,10 +850,10 @@
       }
 
       .hero-subhead {
-        max-width: 345px;
+        max-width: 350px;
         margin-top: 26px;
         font-size: 15.5px;
-        line-height: 1.62;
+        line-height: 1.52;
       }
 
       .reviewer img {
@@ -914,7 +915,12 @@
           <h1><span class="headline-main">AI Receptionist</span><span class="hero-highlight">Made For HVAC Businesses</span></h1>
         </div>
 
-        <p class="hero-subhead">Whether you&apos;re on the job site<span class="subhead-comma">,</span> helping a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> Our AI receptionist makes sure you never miss a call and books<br>appointments 24/7</p>
+        <p class="hero-subhead">
+          Whether you&apos;re on the job site helping a homeowner,<br>
+          or spending time with your family,<br>
+          Our AI receptionist makes sure you never miss a call<br>
+          and books appointments&nbsp;24/7
+        </p>
 
         <div class="cta-row">
           <a class="cta" href="/ai-receptionist/funnel">
