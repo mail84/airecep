@@ -315,7 +315,33 @@
         min-height: 60px;
       }
     }
+
+    .calendly-step .intro {
+      margin-bottom: 18px;
+    }
+
+    .calendly-step .question-copy {
+      margin-bottom: 22px;
+    }
+
+    .calendly-inline-widget {
+      width: 100%;
+      min-width: 320px;
+      height: 760px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .page.calendly-mode {
+      width: min(100%, 920px);
+      padding: 64px 34px 44px;
+    }
+
   </style>
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -338,7 +364,7 @@
 <body>
   <main class="page">
     <form class="step active" id="step-1">
-      <a class="back" href="index.html">&larr; Back</a>
+      <a class="back" href="ai-receptionist.html">&larr; Back</a>
       <div class="intro">
         <h1>AI Receptionist Demo</h1>
         <div class="trial-badge">
@@ -393,6 +419,15 @@
       <input class="input website-field" id="website" type="text" inputmode="url" autocomplete="url" placeholder="www.yourbusiness.com">
       <button class="button" id="schedule-button" type="submit" disabled>Choose a time</button>
     </form>
+
+    <section class="step calendly-step" id="step-4">
+      <button class="back" type="button" data-back>&larr; Back</button>
+      <div class="intro">
+        <h2 class="question-title">Choose a time for your free demo</h2>
+        <p class="question-copy">Pick a time below. Once the meeting is booked, Meta will track it as a scheduled event.</p>
+      </div>
+      <div id="calendly-inline-widget" class="calendly-inline-widget"></div>
+    </section>
   </main>
 
   <script>
@@ -405,13 +440,17 @@
       email: '',
       selectedCalls: '',
       website: '',
-      partialLeadSent: false
+      partialLeadSent: false,
+      calendlyLoaded: false,
+      scheduleTracked: false
     };
 
+    const page = document.querySelector('.page');
     const steps = [
       document.getElementById('step-1'),
       document.getElementById('step-2'),
-      document.getElementById('step-3')
+      document.getElementById('step-3'),
+      document.getElementById('step-4')
     ];
     const nameInput = document.getElementById('name');
     const phoneInput = document.getElementById('phone');
@@ -425,14 +464,55 @@
       steps.forEach(function(el, index) {
         el.classList.toggle('active', index + 1 === step);
       });
+      page.classList.toggle('calendly-mode', step === 4);
     }
 
     function getCalendlyUrl() {
       const url = new URL('https://calendly.com/leaddigitalorg/aireceptionist');
-      url.searchParams.set('name', state.name);
-      url.searchParams.set('email', state.email);
+      url.searchParams.set('hide_event_type_details', '1');
+      url.searchParams.set('hide_gdpr_banner', '1');
       return url.toString();
     }
+
+    function showCalendly() {
+      setStep(4);
+
+      if (state.calendlyLoaded) return;
+      state.calendlyLoaded = true;
+
+      function loadCalendly() {
+        if (!window.Calendly || !window.Calendly.initInlineWidget) {
+          setTimeout(loadCalendly, 150);
+          return;
+        }
+
+        window.Calendly.initInlineWidget({
+          url: getCalendlyUrl(),
+          parentElement: document.getElementById('calendly-inline-widget'),
+          prefill: {
+            name: state.name,
+            email: state.email
+          },
+          utm: {
+            utmSource: 'lead-digital-funnel',
+            utmMedium: 'website',
+            utmCampaign: 'ai-receptionist'
+          }
+        });
+      }
+
+      loadCalendly();
+    }
+
+    window.addEventListener('message', function(event) {
+      if (!event.data || event.data.event !== 'calendly.event_scheduled') return;
+      if (state.scheduleTracked) return;
+      state.scheduleTracked = true;
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'Schedule');
+      }
+    });
 
     function updateScheduleButton() {
       scheduleButton.disabled = !websiteInput.value.trim();
@@ -495,7 +575,7 @@
       event.preventDefault();
       state.website = websiteInput.value.trim();
       if (!state.selectedCalls || !state.website) return;
-      window.location.href = getCalendlyUrl();
+      showCalendly();
     });
 
     document.querySelectorAll('[data-back]').forEach(function(button) {
