@@ -316,6 +316,7 @@
       }
     }
 
+    
     .calendly-step .intro {
       margin-bottom: 18px;
     }
@@ -324,7 +325,7 @@
       margin-bottom: 22px;
     }
 
-    .calendly-inline-widget {
+    .calendly-frame {
       width: 100%;
       min-width: 320px;
       height: 760px;
@@ -340,9 +341,9 @@
       padding: 64px 34px 44px;
     }
 
+
   </style>
-  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-  <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -426,7 +427,7 @@
         <h2 class="question-title">Choose a time for your free demo</h2>
         <p class="question-copy">Pick a time below. Once the meeting is booked, Meta will track it as a scheduled event.</p>
       </div>
-      <div id="calendly-inline-widget" class="calendly-inline-widget"></div>
+      <iframe id="calendly-frame" class="calendly-frame" title="Schedule your AI receptionist demo" loading="lazy"></iframe>
     </section>
   </main>
 
@@ -471,37 +472,18 @@
       const url = new URL('https://calendly.com/leaddigitalorg/aireceptionist');
       url.searchParams.set('hide_event_type_details', '1');
       url.searchParams.set('hide_gdpr_banner', '1');
+      url.searchParams.set('name', state.name);
+      url.searchParams.set('email', state.email);
       return url.toString();
     }
 
     function showCalendly() {
       setStep(4);
 
-      if (state.calendlyLoaded) return;
-      state.calendlyLoaded = true;
-
-      function loadCalendly() {
-        if (!window.Calendly || !window.Calendly.initInlineWidget) {
-          setTimeout(loadCalendly, 150);
-          return;
-        }
-
-        window.Calendly.initInlineWidget({
-          url: getCalendlyUrl(),
-          parentElement: document.getElementById('calendly-inline-widget'),
-          prefill: {
-            name: state.name,
-            email: state.email
-          },
-          utm: {
-            utmSource: 'lead-digital-funnel',
-            utmMedium: 'website',
-            utmCampaign: 'ai-receptionist'
-          }
-        });
+      const calendlyFrame = document.getElementById('calendly-frame');
+      if (!calendlyFrame.src) {
+        calendlyFrame.src = getCalendlyUrl();
       }
-
-      loadCalendly();
     }
 
     window.addEventListener('message', function(event) {
