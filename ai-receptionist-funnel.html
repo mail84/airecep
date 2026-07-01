@@ -441,6 +441,7 @@
       website: '',
       partialLeadSent: false,
       calendlyLoaded: false,
+      leadTracked: false,
       scheduleTracked: false
     };
 
@@ -528,6 +529,15 @@
       });
     }
 
+    function trackLeadEvent() {
+      if (state.leadTracked) return;
+      state.leadTracked = true;
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'Lead');
+      }
+    }
+
     document.getElementById('step-1').addEventListener('submit', function(event) {
       event.preventDefault();
       state.name = nameInput.value.trim();
@@ -535,6 +545,7 @@
       state.email = emailInput.value.trim();
       if (!state.name || !state.phone || !state.email) return;
       sendPartialLead();
+      trackLeadEvent();
       setStep(2);
     });
 
