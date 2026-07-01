@@ -153,6 +153,7 @@
     .headline-main,
     .hero-highlight {
       display: block;
+      white-space: nowrap;
     }
 
     .headline-main {
@@ -166,12 +167,13 @@
     .hero-highlight {
       color: #facc15;
       font-style: italic;
-      font-size: 0.88em;
+      font-size: clamp(30px, 5.1vw, 52px);
       line-height: 1.04;
-      letter-spacing: -0.012em;
+      letter-spacing: -0.02em;
       text-align: center;
       margin-left: auto;
       margin-right: auto;
+      white-space: nowrap;
     }
 
     .hero-subhead {
@@ -290,6 +292,11 @@
       color: rgba(255, 255, 255, 0.78);
     }
 
+    .hero-platforms {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
     .platform {
       display: inline-flex;
       align-items: center;
@@ -336,6 +343,8 @@
       max-width: 100%;
       color: #ffffff;
       text-decoration: none;
+      animation: cuePulse 1.15s ease-in-out infinite;
+      transform-origin: center;
     }
 
     .demo-scroll-cue .cue-text {
@@ -347,25 +356,25 @@
     }
 
     .demo-scroll-cue strong {
-      color: var(--primary);
+      color: #ffffff;
       font-weight: 900;
+      display: inline-block;
     }
 
     .demo-scroll-cue .cue-arrow {
       color: var(--primary);
       font-size: 20px;
       line-height: 1;
-      animation: cueBounce 1.15s ease-in-out infinite;
     }
 
-    @keyframes cueBounce {
+    @keyframes cuePulse {
       0%, 100% {
-        transform: translateY(0);
-        opacity: 0.75;
+        transform: translateY(0) scale(1);
+        opacity: 0.78;
       }
 
       50% {
-        transform: translateY(4px);
+        transform: translateY(4px) scale(1.025);
         opacity: 1;
       }
     }
@@ -392,7 +401,7 @@
     .guarantee-title svg {
       width: 28px;
       height: 28px;
-      color: #facc15;
+      color: #22c55e;
       flex: none;
     }
 
@@ -862,7 +871,7 @@
       }
 
       .headline-wrap {
-        max-width: 430px;
+        max-width: 100%;
       }
 
       .demo-grid,
@@ -889,7 +898,8 @@
       }
 
       .hero-highlight {
-        font-size: 0.9em;
+        font-size: clamp(27px, 7.4vw, 34px);
+        white-space: nowrap;
       }
 
       .hero-subhead {
@@ -948,7 +958,430 @@
         display: block;
       }
     }
-  </style>
+  
+
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin: 20px auto 16px;
+      color: #ffffff;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+    }
+
+    .hero-price-now {
+      font-size: clamp(18px, 2.2vw, 25px);
+      color: #ffffff;
+    }
+
+    .hero-price-old {
+      position: relative;
+      font-size: clamp(18px, 2.2vw, 25px);
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(255, 255, 255, 0.65);
+    }
+
+    .hero-price-new {
+      font-size: clamp(20px, 2.5vw, 29px);
+      color: #ffffff;
+      font-weight: 900;
+      text-decoration: none;
+      text-shadow: none;
+    }
+
+
+
+    /* Cleaned hero polish - compact, balanced, no animated cue */
+    .hero {
+      min-height: auto;
+      padding: 72px 18px 28px;
+      display: flex;
+      align-items: stretch;
+      /* keep the existing HVAC background image; polish only layout and overlay via existing CSS */
+    }
+
+    .hero-inner {
+      width: 100%;
+      min-height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-badge {
+      margin-bottom: 26px;
+      transform: scale(0.94);
+    }
+
+    .headline-wrap {
+      max-width: 740px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6.7vw, 64px);
+      text-shadow: 0 6px 30px rgba(0, 0, 0, 0.44);
+    }
+
+    .headline-main {
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      font-size: clamp(26px, 4.4vw, 43px);
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .hero-subhead {
+      max-width: 650px;
+      margin-top: 30px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: clamp(16px, 2.15vw, 20px);
+      line-height: 1.58;
+      font-weight: 650;
+      text-shadow: 0 3px 18px rgba(0,0,0,.35);
+    }
+
+    .hero-price {
+      margin: 22px auto 18px;
+      gap: 10px;
+      font-size: clamp(16px, 2vw, 21px);
+      line-height: 1.1;
+      text-shadow: 0 2px 14px rgba(0,0,0,.35);
+    }
+
+    .hero-price-now,
+    .hero-price-old,
+    .hero-price-new {
+      font-size: inherit;
+    }
+
+    .hero-price-new {
+      color: #ffffff;
+      font-weight: 900;
+    }
+
+    .cta-row {
+      margin-top: 18px;
+    }
+
+    .cta {
+      min-width: 270px;
+      padding: 17px 32px;
+      font-size: 17px;
+      box-shadow: 0 20px 46px rgba(0,0,0,.35);
+    }
+
+    .guarantee {
+      margin-top: 30px;
+    }
+
+    .guarantee-title {
+      font-size: clamp(22px, 3.2vw, 31px);
+      gap: 11px;
+      text-shadow: 0 3px 20px rgba(0,0,0,.32);
+    }
+
+    .guarantee-title svg {
+      width: 26px;
+      height: 26px;
+      color: #22c55e;
+      filter: drop-shadow(0 0 10px rgba(34, 197, 94, .25));
+    }
+
+    .demo-scroll-cue {
+      margin-top: 34px;
+      padding-top: 0;
+      gap: 10px;
+      color: rgba(255,255,255,.86);
+      animation: none !important;
+      transform: none !important;
+      opacity: 1;
+    }
+
+    .demo-scroll-cue .cue-text {
+      font-size: clamp(13px, 1.8vw, 16px);
+      font-weight: 850;
+      white-space: normal;
+      text-shadow: 0 2px 14px rgba(0,0,0,.34);
+    }
+
+    .demo-scroll-cue strong {
+      color: inherit;
+      font-weight: inherit;
+    }
+
+    .demo-scroll-cue .cue-arrow {
+      color: var(--primary);
+      font-size: 18px;
+      opacity: .9;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        min-height: auto;
+        padding-top: 70px;
+        padding-bottom: 28px;
+      }
+
+      .hero-inner {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        min-height: auto;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 62px;
+        padding-bottom: 24px;
+      }
+
+      .hero-inner {
+        min-height: auto;
+      }
+
+      .review-badge {
+        margin-bottom: 24px;
+        transform: scale(0.88);
+      }
+
+      h1 {
+        font-size: clamp(38px, 10.6vw, 44px);
+      }
+
+      .headline-main {
+        margin-bottom: 9px;
+      }
+
+      .hero-highlight {
+        font-size: clamp(24px, 7.2vw, 31px);
+      }
+
+      .hero-subhead {
+        max-width: 370px;
+        margin-top: 28px;
+        font-size: 16px;
+        line-height: 1.55;
+      }
+
+      .hero-price {
+        margin-top: 21px;
+        margin-bottom: 18px;
+        gap: 7px;
+        font-size: 17px;
+      }
+
+      .cta-row {
+        margin-top: 16px;
+      }
+
+      .cta {
+        min-width: 260px;
+        padding: 16px 26px;
+      }
+
+      .guarantee {
+        margin-top: 28px;
+      }
+
+      .guarantee-title {
+        font-size: clamp(22px, 6.3vw, 27px);
+      }
+
+      .guarantee-title svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .demo-scroll-cue {
+        padding-top: 0;
+        margin-top: 30px;
+        gap: 8px;
+      }
+
+      .demo-scroll-cue .cue-text {
+        font-size: 13px;
+      }
+
+      .demo-scroll-cue .cue-arrow {
+        font-size: 16px;
+      }
+    }
+
+  
+
+    /* Final hero cleanup: remove bottom cue, tighten hero, and narrow subheading */
+    .hero {
+      padding-bottom: 46px;
+    }
+
+    .hero-subhead {
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .guarantee {
+      margin-top: 30px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        padding-bottom: 42px;
+      }
+
+      .hero-subhead {
+        max-width: 520px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        padding-bottom: 38px;
+      }
+
+      .hero-subhead {
+        max-width: 330px;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
+    }
+
+
+
+    /* Spaced hero polish: more breathing room, narrower subheading, clearer old price */
+    .hero {
+      padding-top: 86px !important;
+      padding-bottom: 70px !important;
+    }
+
+    .review-badge {
+      margin-bottom: 34px !important;
+    }
+
+    .headline-main {
+      margin-bottom: 16px !important;
+    }
+
+    .hero-highlight {
+      margin-top: 0 !important;
+    }
+
+    .hero-subhead {
+      max-width: 530px !important;
+      margin-top: 42px !important;
+      line-height: 1.64 !important;
+    }
+
+    .hero-price {
+      margin-top: 36px !important;
+      margin-bottom: 0 !important;
+    }
+
+    .hero-price-old {
+      color: rgba(255, 255, 255, 0.78) !important;
+      font-weight: 850 !important;
+      text-decoration-thickness: 1.7px !important;
+      text-decoration-color: rgba(255, 255, 255, 0.9) !important;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35) !important;
+    }
+
+    .cta-row {
+      margin-top: 30px !important;
+    }
+
+    .guarantee {
+      margin-top: 46px !important;
+    }
+
+    @media (max-width: 780px) {
+      .hero {
+        padding-top: 82px !important;
+        padding-bottom: 66px !important;
+      }
+
+      .review-badge {
+        margin-bottom: 32px !important;
+      }
+
+      .headline-main {
+        margin-bottom: 14px !important;
+      }
+
+      .hero-subhead {
+        max-width: 430px !important;
+        margin-top: 38px !important;
+        line-height: 1.62 !important;
+      }
+
+      .hero-price {
+        margin-top: 34px !important;
+      }
+
+      .cta-row {
+        margin-top: 28px !important;
+      }
+
+      .guarantee {
+        margin-top: 42px !important;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero {
+        padding-top: 74px !important;
+        padding-bottom: 58px !important;
+      }
+
+      .hero-subhead {
+        max-width: 335px !important;
+        margin-top: 34px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      .hero-price {
+        margin-top: 30px !important;
+      }
+
+      .cta-row {
+        margin-top: 26px !important;
+      }
+
+      .guarantee {
+        margin-top: 38px !important;
+      }
+    }
+
+
+    /* Fine-tune guarantee alignment with the narrower subheading */
+    .guarantee-title {
+      transform: translateX(-12px);
+    }
+
+    @media (max-width: 780px) {
+      .guarantee-title {
+        transform: translateX(-10px);
+      }
+    }
+
+    @media (max-width: 460px) {
+      .guarantee-title {
+        transform: translateX(-8px);
+      }
+    }
+
+</style>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -990,8 +1423,14 @@
           <h1><span class="headline-main">AI Receptionist</span><span class="hero-highlight">Made For HVAC Businesses</span></h1>
         </div>
 
-        <p class="hero-subhead">Whether you&apos;re on the job site<span class="subhead-comma">,</span> helping a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> Our AI receptionist makes sure you never miss a call and books<br>appointments 24/7</p>
+        <p class="hero-subhead">Whether you&apos;re on the job site<span class="subhead-comma">,</span> helping a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> our AI receptionist makes sure you never miss a call and books appointments 24/7</p>
 
+
+        <div class="hero-price" aria-label="Now $427 per month">
+          <span class="hero-price-now">Now</span>
+          <span class="hero-price-old">$1,200/month</span>
+          <span class="hero-price-new">$427/month</span>
+        </div>
         <div class="cta-row">
           <a class="cta" href="/ai-receptionist/funnel">
             <span>Book Your Free Demo</span>
@@ -1007,28 +1446,9 @@
               <path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
               <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span>30 Day Risk-Free Trial</span>
+            <span>90-Day Money-Back Guarantee</span>
           </h2>
         </div>
-
-        <div class="platforms">
-          <div class="platform">
-            <span class="google" aria-hidden="true"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span>
-            <span class="small-stars" aria-label="5 star rating">★★★★★</span>
-          </div>
-          <span class="divider" aria-hidden="true">|</span>
-          <div class="platform">
-            <span class="facebook-dot" aria-hidden="true">f</span>
-            <span>Facebook</span>
-            <span class="small-stars" aria-label="5 star rating">★★★★★</span>
-          </div>
-        </div>
-
-        <a class="demo-scroll-cue" href="#demo" aria-label="Hear the AI receptionist handle calls below">
-          <span class="cue-arrow" aria-hidden="true">↓↓</span>
-          <span class="cue-text">Hear The <strong>AI Receptionist</strong> Handle Calls Below</span>
-          <span class="cue-arrow" aria-hidden="true">↓↓</span>
-        </a>
       </div>
     </section>
 
