@@ -477,6 +477,7 @@
 
     function showCalendly() {
       setStep(4);
+      localStorage.setItem('leadDigitalCustomerName', state.name);
 
       const calendlyFrame = document.getElementById('calendly-frame');
       if (!calendlyFrame.src) {
@@ -492,6 +493,12 @@
       if (typeof fbq === 'function') {
         fbq('track', 'Schedule');
       }
+
+      const thankYouUrl = new URL('/thank-you', window.location.origin);
+      thankYouUrl.searchParams.set('name', state.name);
+      window.setTimeout(function() {
+        window.location.href = thankYouUrl.toString();
+      }, 900);
     });
 
     function updateScheduleButton() {
