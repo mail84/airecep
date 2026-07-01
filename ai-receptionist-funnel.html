@@ -494,7 +494,7 @@
         fbq('track', 'Schedule');
       }
 
-      const thankYouUrl = new URL('/thank-you', window.location.origin);
+      const thankYouUrl = new URL('/thank-you.html', window.location.origin);
       thankYouUrl.searchParams.set('name', state.name);
       window.setTimeout(function() {
         window.location.href = thankYouUrl.toString();
