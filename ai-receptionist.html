@@ -1526,7 +1526,80 @@
       }
     }
 
-</style>
+
+
+    /* Side spacing polish: keep hero subheading from filling the full phone width */
+    .hero-subhead {
+      max-width: 480px !important;
+    }
+
+    @media (max-width: 780px) {
+      .hero-subhead {
+        max-width: 370px !important;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero-subhead {
+        max-width: 318px !important;
+        font-size: 13.4px !important;
+        line-height: 1.5 !important;
+        letter-spacing: -0.012em !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hero-subhead {
+        max-width: 296px !important;
+        font-size: 12.8px !important;
+        line-height: 1.48 !important;
+      }
+    }
+
+
+
+    /* Final mobile heading override: smaller, cleaner, still one line */
+    @media (max-width: 460px) {
+      .headline-wrap {
+        max-width: 340px !important;
+      }
+
+      h1 {
+        font-size: 30px !important;
+        line-height: 1.08 !important;
+      }
+
+      .headline-main {
+        font-size: 34px !important;
+        line-height: 1 !important;
+        margin-bottom: 10px !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.02em !important;
+      }
+
+      .hero-highlight {
+        font-size: 23px !important;
+        line-height: 1.04 !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.025em !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .headline-wrap {
+        max-width: 315px !important;
+      }
+
+      .headline-main {
+        font-size: 31px !important;
+      }
+
+      .hero-highlight {
+        font-size: 21px !important;
+      }
+    }
+
+  </style>
   <!-- Meta Pixel Code -->
   <script>
   !function(f,b,e,v,n,t,s)
@@ -1568,7 +1641,7 @@
           <h1><span class="headline-main">AI Receptionist</span><span class="hero-highlight">Made For HVAC Businesses</span></h1>
         </div>
 
-        <p class="hero-subhead">Whether you&apos;re working<span class="subhead-comma">,</span> talking with a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> our AI receptionists make sure every call gets answered and every appointment gets booked — <span class="nowrap">24/7, including</span> weekends and holidays.</p>
+        <p class="hero-subhead">Whether you&apos;re working<span class="subhead-comma">,</span> talking with a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> our AI receptionists make sure every call gets answered and every appointment gets booked — <span class="nowrap">24/7, including</span> weekends</p>
 
 
         <div class="hero-price" aria-label="Now $427 per month">
