@@ -1381,6 +1381,151 @@
       }
     }
 
+
+    /* Mobile polish: tighter subheading width and one-line guarantee */
+    .hero-subhead {
+      max-width: 500px !important;
+    }
+
+    .guarantee-title {
+      transform: none !important;
+      white-space: nowrap !important;
+      flex-wrap: nowrap !important;
+      font-size: clamp(20px, 3.1vw, 28px) !important;
+      gap: 9px !important;
+    }
+
+    .guarantee-title svg {
+      width: 24px !important;
+      height: 24px !important;
+      flex: 0 0 auto !important;
+    }
+
+    @media (max-width: 780px) {
+      .hero-subhead {
+        max-width: 390px !important;
+      }
+
+      .guarantee-title {
+        font-size: clamp(20px, 4.8vw, 24px) !important;
+        gap: 8px !important;
+      }
+
+      .guarantee-title svg {
+        width: 22px !important;
+        height: 22px !important;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero-subhead {
+        max-width: 312px !important;
+      }
+
+      .guarantee-title {
+        font-size: clamp(18px, 4.7vw, 21px) !important;
+        letter-spacing: -0.04em !important;
+        gap: 6px !important;
+      }
+
+      .guarantee-title svg {
+        width: 19px !important;
+        height: 19px !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hero-subhead {
+        max-width: 292px !important;
+      }
+
+      .guarantee-title {
+        font-size: 17px !important;
+        gap: 5px !important;
+      }
+
+      .guarantee-title svg {
+        width: 17px !important;
+        height: 17px !important;
+      }
+    }
+
+
+
+    /* Mobile final polish: keep subheading to max 5 lines and guarantee on one line */
+    .guarantee-title {
+      white-space: nowrap !important;
+    }
+
+    @media (max-width: 780px) {
+      .hero-subhead {
+        max-width: 440px !important;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .hero-subhead {
+        max-width: 352px !important;
+        font-size: 14.6px !important;
+        line-height: 1.55 !important;
+        margin-top: 32px !important;
+      }
+
+      .guarantee-title {
+        font-size: clamp(15px, 4.1vw, 18px) !important;
+        line-height: 1.05 !important;
+        letter-spacing: -0.045em !important;
+        gap: 6px !important;
+        max-width: calc(100vw - 28px) !important;
+      }
+
+      .guarantee-title svg {
+        width: 17px !important;
+        height: 17px !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hero-subhead {
+        max-width: 332px !important;
+        font-size: 13.8px !important;
+        line-height: 1.52 !important;
+      }
+
+      .guarantee-title {
+        font-size: 14px !important;
+        gap: 5px !important;
+      }
+
+      .guarantee-title svg {
+        width: 15px !important;
+        height: 15px !important;
+      }
+    }
+
+
+    /* Subheading update: keep mobile copy tight, balanced, and avoid orphaned 24/7 */
+    .hero-subhead .nowrap {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 460px) {
+      .hero-subhead {
+        max-width: 356px !important;
+        font-size: 13.7px !important;
+        line-height: 1.48 !important;
+        letter-spacing: -0.015em !important;
+      }
+    }
+
+    @media (max-width: 370px) {
+      .hero-subhead {
+        max-width: 334px !important;
+        font-size: 12.9px !important;
+        line-height: 1.46 !important;
+      }
+    }
+
 </style>
   <!-- Meta Pixel Code -->
   <script>
@@ -1423,7 +1568,7 @@
           <h1><span class="headline-main">AI Receptionist</span><span class="hero-highlight">Made For HVAC Businesses</span></h1>
         </div>
 
-        <p class="hero-subhead">Whether you&apos;re on the job site<span class="subhead-comma">,</span> helping a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> our AI receptionist makes sure you never miss a call and books appointments 24/7</p>
+        <p class="hero-subhead">Whether you&apos;re working<span class="subhead-comma">,</span> talking with a homeowner<span class="subhead-comma">,</span> or spending time with your family<span class="subhead-comma">,</span> our AI receptionists make sure every call gets answered and every appointment gets booked — <span class="nowrap">24/7, including</span> weekends and holidays.</p>
 
 
         <div class="hero-price" aria-label="Now $427 per month">
